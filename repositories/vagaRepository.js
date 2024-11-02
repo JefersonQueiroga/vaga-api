@@ -1,8 +1,10 @@
 const {v4: uuidv4} = require('uuid');
+const logger = require('../utils/logger');
 
 let vagas = [];
 
 function create({descricao, titulo, dataCadastro,telefone, empresa}) {  
+  try {
     const vaga = {
         id: uuidv4(),
         descricao,
@@ -13,6 +15,11 @@ function create({descricao, titulo, dataCadastro,telefone, empresa}) {
     };
     vagas.push(vaga);
     return vaga;
+  } catch (error) {
+    logger.error('Erro ao criar vaga');
+    logger.log(error)
+    return null;
+  }
 }
 
 function update(id, {descricao, titulo, dataCadastro,telefone, empresa}) {

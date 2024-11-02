@@ -1,10 +1,18 @@
 const express = require('express');
 const { create,update,remove,findAll } = require('./repositories/vagaRepository');
+const morgan = require('morgan');
+const logger = require('./utils/logger');
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+app.use(
+  morgan("combined", {
+    stream: { write: (message) => logger.info(message.trim()) },
+  })
+);
 
 app.post('/vagas', (req, res) => {
     const { descricao, titulo, dataCadastro, telefone, empresa } = req.body;
@@ -31,5 +39,5 @@ app.delete('/vagas/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    logger.info(`Server running on port ${port}`);
 });
