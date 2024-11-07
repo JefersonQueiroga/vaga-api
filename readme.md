@@ -18,7 +18,7 @@ API desenvolvida em **Express.js** para gerenciar vagas de emprego. A API permit
 ## 🚀 **Como Rodar o Projeto**
 1. Clone o repositório:
    ```bash
-   git clone <seu-repositório>
+   git clone https://github.com/JefersonQueiroga/vaga-api.git
    cd vaga-api
    ```
 
